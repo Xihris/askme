@@ -8,9 +8,9 @@ class User < ApplicationRecord
 
   validates :email, :email_format => { :message => 'is not looking good' }
   validates :username, length: { maximum: 40 }
-  validates :username, format: { with: /\A\w\z/}
+  validates :username, format: { with: /[^^_]\w+[^$_]/}
   validates :name, :username, :email, presence: true
-  before_validation :downcase_username
+  before_validation :downcase_name
   validates_uniqueness_of :name, :email, :username
 
   # attr_accessor :password
@@ -42,7 +42,7 @@ class User < ApplicationRecord
   #     end
   #   end
 
-    def downcase_username
+    def downcase_name
       self.name = name.downcase
     end
 end
