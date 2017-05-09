@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :username, length: { maximum: 40 }
   validates :username, format: { with: /[^^_]\w+[^$_]/}
   validates :name, :username, :email, presence: true
-  before_validation :downcase_name
+  before_validation :downcase_username
   validates_uniqueness_of :name, :email, :username
 
   # attr_accessor :password
@@ -42,7 +42,7 @@ class User < ApplicationRecord
   #     end
   #   end
 
-    def downcase_name
-      self.name = name.downcase
+    def downcase_username
+      self.username = username.downcase
     end
 end
