@@ -11,6 +11,8 @@
     @<%= @user.username %>
   </h2>
 
+  
+
   <div class="user-ask-button container text-center">
     <%= link_to "Спроси меня", '', class: 'button button-light', id: 'ask-button' %>
   </div>
@@ -37,6 +39,12 @@
 
 <div class="column-3-4">
   <div class="user-questions buffer-both">
+
+  <div class="title-small text-center"> 
+    Всего
+          <%= @questions.count %>
+          <%= t('question', count: @questions.count) %>
+  </div>
     <div class="questions-list">
       <% @questions.each do |question| %>
         <%= render partial: 'questions/question', object: question %>
